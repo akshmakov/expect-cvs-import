@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- * expWinSlaveTransport.cpp --
+ * expWinSlaveCliTransport.cpp --
  *
  *	Generic routines for opening the client IPC transport.  Has knowledge
  *	of all transport types used.
@@ -24,7 +24,7 @@
  *	    http://expect.sf.net/
  *	    http://bmrc.berkeley.edu/people/chaffee/expectnt.html
  * ----------------------------------------------------------------------------
- * RCS: @(#) $Id: expWinSpawnTransport.cpp,v 1.1.2.1 2001-11-09 01:17:40 davygrvy Exp $
+ * RCS: @(#) $Id: expWinSpawnCliTransport.cpp,v 1.1.2.1 2001-11-15 07:25:19 davygrvy Exp $
  * ----------------------------------------------------------------------------
  */
 
@@ -49,11 +49,9 @@ ExpWinSpawnOpenTransport(const char *name)
     if (name[0] == 'm' && name[1] == 'b') {
 	return new ExpSpawnMailboxCli(name);
     }
-    /* TODO: we can add more transports here when the time is right */
-    /*
     else if (name[0] == 's' && name[1] == 'k') {
 	return new ExpSpawnSocketCli(name);
     }
-    */
+    /* TODO: we can add more transports here when the time is right */
     else return 0L;
 }
