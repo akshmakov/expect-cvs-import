@@ -1,14 +1,7 @@
 /* ----------------------------------------------------------------------------
- * expWinSlaveTrapDbg.cpp --
+ * expWinSlaveTrap.hpp --
  *
- *	The slave driver acts as a debugger for the slave program.  It
- *	does this so that we can determine echoing behavior of the
- *	subprocess.  This isn't perfect as the subprocess can change
- *	echoing behavior while our keystrokes are lying in its console
- *	input buffer, but it is much better than nothing.  The debugger
- *	thread sets up breakpoints on the OS functions we want to intercept,
- *	and it writes data that is written directly to the console of
- *	the master over a method of IPC.
+ *	Declares the SlaveTrap classes.
  *
  * ----------------------------------------------------------------------------
  *
@@ -29,16 +22,31 @@
  *	    http://expect.sf.net/
  *	    http://bmrc.berkeley.edu/people/chaffee/expectnt.html
  * ----------------------------------------------------------------------------
- * RCS: @(#) $Id: expWinSlaveTrapDbg.cpp,v 1.1.4.5 2002-03-12 07:09:36 davygrvy Exp $
+ * RCS: @(#) $Id: expWinSlaveTrap.hpp,v 1.1.2.1 2002-03-12 07:09:36 davygrvy Exp $
  * ----------------------------------------------------------------------------
  */
 
-#include "expWinInt.h"
+#ifndef INC_expWinSlaveTrap_hpp__
+#define INC_expWinSlaveTrap_hpp__
 
+#include "expWinMessage.hpp"
+#include "Mcl/include/CMcl.h"
 
-ExpSlaveTrapDbg::ExpSlaveTrapDbg(int argc, char * const argv[], CMclQueue<Message *> &_mQ)
-    : mQ(_mQ)
-{
-    debuggerThread = new CMclThread(new ConsoleDebugger(argc, argv, _mQ));
-}
+class ExpSlaveTrap {
+};
 
+/*
+class ExpSlaveTrapPipe : public ExpSlaveTrap {
+public:
+    ExpSlaveTrapPipe(int argc, char * const argv[], CMclQueue<Message> &_mQ);
+};*/
+
+class ExpSlaveTrapDbg : public ExpSlaveTrap {
+public:
+    ExpSlaveTrapDbg(int argc, char * const argv[], CMclQueue<Message *> &_mQ);
+private:
+    CMclQueue<Message *> &mQ;
+    CMclThreadAutoPtr debuggerThread;
+};
+
+#endif
