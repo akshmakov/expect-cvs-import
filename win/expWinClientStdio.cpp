@@ -22,7 +22,7 @@
  *	    http://expect.sf.net/
  *	    http://bmrc.berkeley.edu/people/chaffee/expectnt.html
  * ----------------------------------------------------------------------------
- * RCS: @(#) $Id: expWinSpawnStdioClient.cpp,v 1.1.2.7 2002-06-23 08:52:22 davygrvy Exp $
+ * RCS: @(#) $Id: expWinClientStdio.cpp,v 1.1.2.1 2002-06-23 08:52:22 davygrvy Exp $
  * ----------------------------------------------------------------------------
  */
 
